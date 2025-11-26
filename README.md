@@ -2,6 +2,11 @@
 
 Budget sharing and group expense management.
 
+## Technical details
+- Using [Sierra's Reloaded workflow](https://cognitect.com/blog/2013/06/04/clojure-workflow-reloaded)
+- Will integrate component library and probably will add some HTTP/router/web libraries to make it a web service
+- Also intend to add some database component, probably Datomic (for learning purposes). TBD
+
 ## Decision Records
 
 #### 01st Nov 2025
@@ -22,6 +27,7 @@ Overall it has been interesting to try to use clojure.spec to help me validate c
 - Added `(stest/instrument)` call in `dev.clj` to only instrument schema validation during development/testing times.
     - This is good practice, as contracts are only for development when in **business and more internal layers**.
     - For edge contracts (eg. APIs), I can use the explicit `:pre` and `:post` or any kind of logic using `(s/valid?)` with some control over code flow
+- Added schema spec also for business layer model (group). This makes it easier to translate between layers and validate the translation throughout the code
 
 > **Change of mind log**: I tried to migrate to duct framework, but making it run is another workflow. It works, and it gives me some power to debug with some macros, as well as some script tools to run stuff, but I need to understand the workflow better, since I can work better with Lein (it's closer to what I already do in my job).
 
