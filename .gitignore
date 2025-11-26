@@ -1,0 +1,6 @@
+**/*.DS_Store
+.calva/
+target
+.lein-failures
+.clj-kondo/
+.lsp/
