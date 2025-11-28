@@ -4,3 +4,4 @@ target
 .lein-failures
 .clj-kondo/
 .lsp/
+.nrepl-port
