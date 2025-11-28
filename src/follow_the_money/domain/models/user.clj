@@ -1,9 +1,15 @@
 (ns follow-the-money.domain.models.user
   (:require
-   [clojure.spec.alpha :as s]))
+   [clojure.spec.alpha :as s]
+   [clojure.spec.gen.alpha :as gen]))
 
 (def email-regex #"^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,63}$")
-(s/def ::email-type (s/and string? #(re-matches email-regex %)))
+(s/def ::email-type
+  (s/with-gen
+    (s/and string? #(re-matches email-regex %))
+    #(gen/fmap (fn [n] (str "user" n "@example" (mod n 5) ".com"))
+               (gen/int))))
+
 (s/def ::id uuid?)
 (s/def ::first-name string?)
 (s/def ::last-name string?)
